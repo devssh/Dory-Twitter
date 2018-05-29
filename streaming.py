@@ -13,7 +13,7 @@ class StdOutListener(tweepy.StreamListener):
     def on_data(self, data):
         # process stream data here
         print("streaming " + str(time.time()))
-        open("data.txt", "a+").write(data)
+        open("data.json", "a+").write(data)
 
     def on_error(self, status):
         print(status)
