@@ -1,5 +1,6 @@
 import tweepy
 import time
+import datetime
 
 consumer_token, consumer_secret, access_token, access_token_secret = open('tokens', 'r').read().split("\n")
 auth = tweepy.OAuthHandler(consumer_token, consumer_secret)
@@ -13,7 +14,7 @@ class StdOutListener(tweepy.StreamListener):
     def on_data(self, data):
         # process stream data here
         print("streaming " + str(time.time()))
-        open("data.json", "a+").write(data)
+        open("data" + datetime.datetime.today().strftime('%Y-%m-%d') + ".json", "a+").write(data)
 
     def on_error(self, status):
         print(status)
