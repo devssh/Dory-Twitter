@@ -4,3 +4,4 @@ twitter.png
 .vscode
 .ipynb_checkpoints
 .idea
+*.json
