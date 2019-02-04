@@ -1,6 +1,3 @@
 30 2 * * * sh start_prod.sh > /tmp/start
 30 14 * * * sh stop_prod.sh > /tmp/stop
-5 */2 * * * aws ec2 describe-instances | jq '.Reservations[].Instances | select(.[].Tags[].Value | st    artswith("Dory Prod") ) |
-  2   select(.[].Tags[].Key == "Name") |
-  3   {InstanceId: .[].InstanceId, PublicDnsName: .[].PublicDnsName, State: .[].State, LaunchTime: .[]    .LaunchTime, Tags: .[].Tags}
-  4   | [.]' >> /tmp/prod_logs
+5 */2 * * * aws ec2 describe-instances | jq '.Reservations[].Instances | select(.[].Tags[].Value | startswith("Dory Prod") ) | select(.[].Tags[].Key == "Name") | {InstanceId: .[].InstanceId, PublicDnsName: .[].PublicDnsName, State: .[].State, LaunchTime: .[]    .LaunchTime, Tags: .[].Tags} | [.]' >> /tmp/prod_logs
